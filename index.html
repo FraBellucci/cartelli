@@ -355,14 +355,17 @@
     const scenarios = [
         {
             images: [
-                { src: './images/vietato-fumare.png',          name: 'Vietato fumare' },
+                { src: './images/divieto-fumare.png',          name: 'Vietato fumare' },
                 { src: './images/uscita-emergenza.png',         name: 'Uscita di emergenza' },
                 { src: './images/estintore.png',                name: 'Estintore' },
                 { src: './images/pericolo-scivolamento.png',    name: 'Pericolo scivolamento' },
                 { src: './images/obbligo-lavaggio-mani.png',   name: 'Obbligo lavaggio mani' },
                 { src: './images/pericolo-elettrico.png',       name: 'Pericolo elettrico' },
             ],
-            question: { text: 'Dove si trova il cartello che indica il pericolo di scivolamento?', answer: 'Pericolo scivolamento' }
+            questions: [
+                { text: 'Dove si trova il cartello che indica il pericolo di scivolamento?', answer: 'Pericolo scivolamento' },
+                { text: 'Dove si trova il cartello che vieta di fumare?', answer: 'Vietato fumare' },
+            ]
         },
         {
             images: [
@@ -373,7 +376,10 @@
                 { src: './images/estintore.png',                name: 'Estintore' },
                 { src: './images/uscita-emergenza.png',         name: 'Uscita di emergenza' },
             ],
-            question: { text: 'Dove si trova il cartello che indica l\'uscita di emergenza?', answer: 'Uscita di emergenza' }
+            questions: [
+                { text: "Dove si trova il cartello che indica l'uscita di emergenza?", answer: 'Uscita di emergenza' },
+                { text: 'Dove si trova il cartello che indica il pericolo di superfici calde?', answer: 'Pericolo superfici calde' },
+            ]
         },
         {
             images: [
@@ -384,7 +390,10 @@
                 { src: './images/fiamme-libere.png',            name: 'Vietato usare fiamme libere' },
                 { src: './images/obbligo-guanti.png',           name: 'Obbligo guanti' },
             ],
-            question: { text: 'Dove si trova la cassetta di pronto soccorso?', answer: 'Cassetta di pronto soccorso' }
+            questions: [
+                { text: 'Dove si trova la cassetta di pronto soccorso?', answer: 'Cassetta di pronto soccorso' },
+                { text: 'Dove si trova il cartello che indica il pericolo elettrico?', answer: 'Pericolo elettrico' },
+            ]
         },
     ];
 
@@ -412,7 +421,7 @@
         // Mescola scenari e immagini dentro ogni scenario
         shuffledScenarios = shuffleArray(scenarios.map(s => ({
             images: shuffleArray(s.images),
-            question: s.question
+            question: s.questions[Math.floor(Math.random() * s.questions.length)]
         })));
 
         currentScenario = 0;
